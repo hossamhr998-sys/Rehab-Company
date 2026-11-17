@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">رحاب للتسويق والتدريب والاستشارات | بروفايل الشركة 2026</title>
+    <!-- تحميل خطوط Google Fonts للعربية (Cairo / Tajawal) والإنجليزية (Plus Jakarta Sans / Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- تحميل Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تحميل مكتبة أيقونات Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- إعدادات Tailwind مع متغيرات CSS للألوان الديناميكية -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rehab: {
+                            dark: 'var(--color-primary, #0B3B32)',
+                            primary: 'var(--color-primary-light, #0F4C40)',
+                            light: '#166354',
+                            mint: 'var(--color-bg, #F8FAF9)',
+                            mintDark: '#EDF3F0',
+                            gold: 'var(--color-accent, #D4AF37)',
+                            goldHover: 'var(--color-accent-hover, #C59B27)',
+                            charcoal: 'var(--color-text, #1A2421)'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'Tajawal', 'sans-serif'],
+                        jakarta: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-primary: #0B3B32;
+            --color-primary-light: #0F4C40;
+            --color-accent: #D4AF37;
+            --color-accent-hover: #C59B27;
+            --color-bg: #F8FAF9;
+            --color-text: #1A2421;
+        }
+
+        html[lang="ar"] body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+        html[lang="en"] body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* تأثيرات الظهور عند التمرير */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* خلفية هندسية ديناميكية لقسم البداية */
+        .hero-pattern {
+            background-color: var(--color-primary);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                              radial-gradient(rgba(255, 255, 255, 0.04) 1px, var(--color-primary) 1px);
+            background-size: 36px 36px;
+            background-position: 0 0, 18px 18px;
+        }
+
+        /* تنسيقات وضع التعديل المباشر (Edit Mode) */
+        body.edit-mode [data-edit] {
+            outline: 2px dashed rgba(212, 175, 55, 0.75);
+            outline-offset: 4px;
+            border-radius: 6px;
+            cursor: text;
+            transition: outline-color 0.2s, background-color 0.2s;
+        }
+        body.edit-mode [data-edit]:hover,
+        body.edit-mode [data-edit]:focus {
+            outline: 2px solid var(--color-accent);
+            background-color: rgba(212, 175, 55, 0.08);
+        }
+
+        /* إظهار أزرار رفع الصور فقط في وضع التعديل أو عند التمرير */
+        .edit-only {
+            display: none;
+        }
+        body.edit-mode .edit-only {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rehab-gold selection:text-rehab-dark">
+
+    <!-- ==================== شريط التنقل العلوي (Navbar) ==================== -->
+    <header id="navbar" class="fixed top-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- الشعار واسم الشركة مع إمكانية رفع شعار مخصص -->
+                <div class="flex items-center gap-3 group relative">
+                    <div id="header-logo-wrapper" class="relative w-11 h-11 rounded-xl bg-rehab-dark flex items-center justify-center text-rehab-gold shadow-md overflow-hidden shrink-0">
+                        <img id="header-logo-img" src="" alt="Logo" class="hidden w-full h-full object-contain bg-white p-1">
+                        <svg id="header-logo-default" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                        <!-- زر رفع شعار الشركة في وضع التعديل -->
+                        <label for="brand-logo-input" title="رفع شعار الشركة" class="edit-only absolute inset-0 bg-black/70 text-white items-center justify-center cursor-pointer hover:bg-black/80 transition-colors">
+                            <i data-lucide="camera" class="w-5 h-5 text-rehab-gold"></i>
+                        </label>
+                        <input type="file" id="brand-logo-input" accept="image/*" class="hidden" onchange="handleBrandLogoUpload(event)">
+                    </div>
+                    <div class="flex flex-col">
+                        <a href="#hero" data-edit="brandName" class="text-xl sm:text-2xl font-black text-rehab-dark tracking-tight leading-none">رحاب</a>
+                        <span data-edit="brandTagline" class="text-[11px] font-semibold text-gray-500 mt-1">للتسويق والتدريب والاستشارات</span>
+                    </div>
+                </div>
+
+                <!-- روابط التنقل لسطح المكتب -->
+                <nav class="hidden xl:flex items-center gap-6 text-sm font-bold text-gray-700">
+                    <a href="#about" data-i18n="navAbout" class="hover:text-rehab-primary transition-colors">من نحن</a>
+                    <a href="#vision" data-i18n="navVision" class="hover:text-rehab-primary transition-colors">رؤيتنا</a>
+                    <a href="#services" data-i18n="navServices" class="hover:text-rehab-primary transition-colors">خدماتنا</a>
+                    <a href="#process" data-i18n="navProcess" class="hover:text-rehab-primary transition-colors">كيف نعمل</a>
+                    <a href="#team" data-i18n="navTeam" class="hover:text-rehab-primary transition-colors">فريقنا</a>
+                    <a href="#why-us" data-i18n="navWhy" class="hover:text-rehab-primary transition-colors">لماذا رحاب</a>
+                    <a href="#clients" data-i18n="navClients" class="hover:text-rehab-primary transition-colors">عملاؤنا</a>
+                    <a href="#contact" data-i18n="navContact" class="hover:text-rehab-primary transition-colors">تواصل معنا</a>
+                </nav>
+
+                <!-- أزرار التحكم: تبديل اللغة + وضع التعديل + لوحة الألوان + زر الدعوة لاتخاذ إجراء -->
+                <div class="flex items-center gap-2 sm:gap-2.5">
+                    <!-- زر تبديل اللغة -->
+                    <button id="lang-toggle-btn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-200 hover:border-rehab-primary bg-rehab-mint text-rehab-dark font-extrabold text-xs sm:text-sm transition-all" title="تغيير اللغة / Switch Language">
+                        <i data-lucide="languages" class="w-4 h-4 text-rehab-primary"></i>
+                        <span id="lang-btn-label">EN</span>
+                    </button>
+
+                    <!-- زر تفعيل/إيقاف وضع التعديل المباشر -->
+                    <button id="edit-mode-btn" onclick="toggleEditMode()" class="cms-ui inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-200 hover:border-rehab-gold bg-white text-rehab-dark font-bold text-xs sm:text-sm transition-all" title="تعديل النصوص والصور مباشرة">
+                        <i data-lucide="edit-3" class="w-4 h-4 text-rehab-gold"></i>
+                        <span class="hidden md:inline" data-i18n="btnEditMode">تعديل الصفحة</span>
+                    </button>
+
+                    <!-- زر فتح لوحة تخصيص الألوان والتصدير -->
+                    <button onclick="toggleCustomizerDrawer()" class="cms-ui inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-rehab-mintDark hover:bg-rehab-gold/20 text-rehab-dark font-bold text-xs sm:text-sm transition-all" title="تخصيص الألوان وتصدير الموقع">
+                        <i data-lucide="palette" class="w-4 h-4 text-rehab-primary"></i>
+                        <span class="hidden lg:inline" data-i18n="btnCustomize">الألوان والتصدير</span>
+                    </button>
+
+                    <!-- زر ابدأ مشروعك -->
+                    <a href="#contact" class="hidden sm:inline-flex items-center gap-1.5 bg-rehab-dark hover:bg-rehab-primary text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-sm transition-all">
+                        <span data-i18n="navCta">ابدأ مشروعك</span>
+                        <i data-lucide="arrow-up-left" class="w-4 h-4 text-rehab-gold rtl:rotate-0 ltr:rotate-90"></i>
+                    </a>
+
+                    <!-- زر قائمة الجوال -->
+                    <button id="mobile-menu-btn" aria-label="Menu" class="xl:hidden p-2 rounded-xl text-rehab-dark hover:bg-rehab-mintDark transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- القائمة المنسدلة للهواتف -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-gray-100 px-4 pt-3 pb-6 shadow-xl">
+            <div class="flex flex-col space-y-1.5 text-sm font-bold text-gray-700">
+                <a href="#about" data-i18n="navAbout" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-rehab-mint">من نحن</a>
+                <a href="#vision" data-i18n="navVision" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-rehab-mint">رؤيتنا</a>
+                <a href="#services" data-i18n="navServices" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-rehab-mint">خدماتنا</a>
+                <a href="#process" data-i18n="navProcess" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-rehab-mint">كيف نعمل</a>
+                <a href="#team" data-i18n="navTeam" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-rehab-mint">فريقنا</a>
+                <a href="#why-us" data-i18n="navWhy" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-rehab-mint">لماذا رحاب</a>
+                <a href="#clients" data-i18n="navClients" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-rehab-mint">عملاؤنا</a>
+                <a href="#contact" data-i18n="navContact" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-rehab-mint">تواصل معنا</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== شريط إشعار وضع التعديل المباشر (يظهر عند التفعيل) ==================== -->
+    <div id="edit-banner" class="cms-ui hidden fixed top-20 inset-x-0 z-30 bg-rehab-gold text-rehab-dark py-2.5 px-4 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm font-extrabold">
+            <div class="flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span data-i18n="editBannerText">وضع التعديل المباشر مفعّل: انقر على أي نص لتعديله مباشرة، أو ارفع الشعارات. التعديلات تُحفظ تلقائياً.</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="exportStandaloneHTML()" class="bg-rehab-dark text-white px-3.5 py-1.5 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-1.5">
+                    <i data-lucide="download" class="w-3.5 h-3.5 text-rehab-gold"></i>
+                    <span data-i18n="btnExportShort">تصدير HTML</span>
+                </button>
+                <button onclick="toggleEditMode()" class="bg-white/80 hover:bg-white text-rehab-dark px-3 py-1.5 rounded-lg transition-colors">
+                    <span data-i18n="btnDoneEdit">إنهاء التعديل</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== لوحة تخصيص الألوان والتصدير الجانبية (Customizer Drawer) ==================== -->
+    <aside id="customizer-drawer" class="cms-ui fixed inset-y-0 ltr:right-0 rtl:left-0 z-50 w-80 sm:w-96 bg-white shadow-2xl border-gray-200 ltr:border-l rtl:border-r transform ltr:translate-x-full rtl:-translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-5 bg-rehab-dark text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <i data-lucide="sliders" class="w-5 h-5 text-rehab-gold"></i>
+                <h3 class="font-black text-base" data-i18n="drawerTitle">تخصيص الهوية والتصدير</h3>
+            </div>
+            <button onclick="toggleCustomizerDrawer()" class="p-1.5 rounded-lg hover:bg-white/10 text-gray-300 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="p-5 overflow-y-auto flex-1 space-y-6 text-sm">
+            <!-- 1. قوالب ألوان جاهزة -->
+            <div>
+                <label class="block font-extrabold text-gray-800 mb-2.5" data-i18n="presetThemesLabel">قوالب ألوان سريعة</label>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <button onclick="applyColorPreset('#0B3B32', '#D4AF37', '#F8FAF9', '#1A2421')" class="flex items-center gap-2 p-2.5 rounded-xl border border-gray-200 hover:border-gray-400 text-xs font-bold">
+                        <span class="w-5 h-5 rounded-full shrink-0" style="background: linear-gradient(135deg, #0B3B32 50%, #D4AF37 50%);"></span>
+                        <span data-i18n="presetEmerald">زمردي وذهبي</span>
+                    </button>
+                    <button onclick="applyColorPreset('#0F172A', '#38BDF8', '#F8FAFC', '#0F172A')" class="flex items-center gap-2 p-2.5 rounded-xl border border-gray-200 hover:border-gray-400 text-xs font-bold">
+                        <span class="w-5 h-5 rounded-full shrink-0" style="background: linear-gradient(135deg, #0F172A 50%, #38BDF8 50%);"></span>
+                        <span data-i18n="presetRoyal">كحلي وسماوي</span>
+                    </button>
+                    <button onclick="applyColorPreset('#3B0764', '#F59E0B', '#FAF5FF', '#1E1B4B')" class="flex items-center gap-2 p-2.5 rounded-xl border border-gray-200 hover:border-gray-400 text-xs font-bold">
+                        <span class="w-5 h-5 rounded-full shrink-0" style="background: linear-gradient(135deg, #3B0764 50%, #F59E0B 50%);"></span>
+                        <span data-i18n="presetPurple">ملكي وعنبري</span>
+                    </button>
+                    <button onclick="applyColorPreset('#7F1D1D', '#EAB308', '#FEF2F2', '#1C1917')" class="flex items-center gap-2 p-2.5 rounded-xl border border-gray-200 hover:border-gray-400 text-xs font-bold">
+                        <span class="w-5 h-5 rounded-full shrink-0" style="background: linear-gradient(135deg, #7F1D1D 50%, #EAB308 50%);"></span>
+                        <span data-i18n="presetBurgundy">عنابي وذهبي</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2. منتقي الألوان المخصص -->
+            <div class="space-y-3 pt-2 border-t border-gray-100">
+                <label class="block font-extrabold text-gray-800" data-i18n="customColorsLabel">تخصيص الألوان يدوياً</label>
+                <div class="flex items-center justify-between bg-gray-50 p-3 rounded-xl">
+                    <span class="font-semibold text-gray-700" data-i18n="colorPrimaryLabel">اللون الأساسي (الهيدر والأزرار)</span>
+                    <input type="color" id="picker-primary" value="#0B3B32" onchange="updateThemeColor('--color-primary', this.value)" class="w-9 h-9 rounded-lg cursor-pointer border-0">
+                </div>
+                <div class="flex items-center justify-between bg-gray-50 p-3 rounded-xl">
+                    <span class="font-semibold text-gray-700" data-i18n="colorAccentLabel">اللون الثانوي (الذهبي المميز)</span>
+                    <input type="color" id="picker-accent" value="#D4AF37" onchange="updateThemeColor('--color-accent', this.value)" class="w-9 h-9 rounded-lg cursor-pointer border-0">
+                </div>
+                <div class="flex items-center justify-between bg-gray-50 p-3 rounded-xl">
+                    <span class="font-semibold text-gray-700" data-i18n="colorBgLabel">لون خلفية الأقسام</span>
+                    <input type="color" id="picker-bg" value="#F8FAF9" onchange="updateThemeColor('--color-bg', this.value)" class="w-9 h-9 rounded-lg cursor-pointer border-0">
+                </div>
+                <div class="flex items-center justify-between bg-gray-50 p-3 rounded-xl">
+                    <span class="font-semibold text-gray-700" data-i18n="colorTextLabel">لون النصوص الأساسي</span>
+                    <input type="color" id="picker-text" value="#1A2421" onchange="updateThemeColor('--color-text', this.value)" class="w-9 h-9 rounded-lg cursor-pointer border-0">
+                </div>
+            </div>
+
+            <!-- 3. رفع شعار الشركة الرئيسي -->
+            <div class="pt-2 border-t border-gray-100">
+                <label class="block font-extrabold text-gray-800 mb-2" data-i18n="uploadBrandLogoLabel">شعار الشركة الرئيسي</label>
+                <div class="flex items-center gap-2">
+                    <label for="brand-logo-input" class="flex-1 cursor-pointer bg-rehab-mint hover:bg-rehab-mintDark border border-dashed border-gray-300 rounded-xl p-3 text-center font-bold text-rehab-dark transition-colors">
+                        <i data-lucide="upload" class="w-4 h-4 inline-block mb-0.5"></i>
+                        <span data-i18n="chooseLogoFile">اختر صورة الشعار</span>
+                    </label>
+                    <button onclick="removeBrandLogo()" class="p-3 rounded-xl bg-red-50 text-red-600 hover:bg-red-100" title="حذف الشعار">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. التصدير والحفظ واستعادة الافتراضي -->
+            <div class="pt-4 border-t border-gray-100 space-y-2.5">
+                <button onclick="exportStandaloneHTML()" class="w-full bg-rehab-dark hover:bg-rehab-primary text-white font-extrabold py-3.5 px-4 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all">
+                    <i data-lucide="download" class="w-5 h-5 text-rehab-gold"></i>
+                    <span data-i18n="btnExportFull">تصدير ملف HTML جاهز للنشر</span>
+                </button>
+                <p class="text-[11px] text-gray-500 leading-relaxed" data-i18n="exportHint">
+                    سيتم تحميل ملف index.html نظيف ومستقل يحتوي على كافة نصوصك وصورك وألوانك بدون شريط التعديل لرفعه مباشرة على الاستضافة.
+                </p>
+
+                <button onclick="showResetConfirm()" class="w-full mt-2 bg-gray-100 hover:bg-red-50 text-gray-700 hover:text-red-600 font-bold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-xs">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                    <span data-i18n="btnResetDefault">استعادة الإعدادات الافتراضية</span>
+                </button>
+
+                <!-- مربع تأكيد الاستعادة المدمج (بدلاً من confirm) -->
+                <div id="reset-confirm-box" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-xs space-y-2">
+                    <p class="font-bold text-red-800" data-i18n="resetConfirmMsg">هل أنت متأكد من مسح كافة التعديلات والعودة للوضع الافتراضي؟</p>
+                    <div class="flex gap-2">
+                        <button onclick="resetAllData()" class="flex-1 bg-red-600 text-white font-bold py-1.5 rounded-lg" data-i18n="confirmYes">نعم، استعادة</button>
+                        <button onclick="hideResetConfirm()" class="flex-1 bg-white text-gray-700 font-bold py-1.5 rounded-lg border" data-i18n="confirmCancel">إلغاء</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==================== 1. قسم البداية (Hero Section) ==================== -->
+    <section id="hero" class="hero-pattern relative pt-32 pb-20 lg:pt-40 lg:pb-28 text-white overflow-hidden">
+        <div class="absolute top-20 ltr:right-10 rtl:left-10 w-72 h-72 bg-rehab-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 ltr:left-10 rtl:right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- شارة بروفايل الشركة 2026 -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-rehab-gold/40 text-rehab-gold text-sm font-bold mb-6 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-rehab-gold animate-pulse"></span>
+                    <span data-edit="heroBadge">بروفايل الشركة &nbsp;|&nbsp; 2026</span>
+                </div>
+
+                <!-- العنوان الرئيسي -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6 tracking-tight">
+                    <span data-edit="heroTitleMain">رحاب للتسويق والتدريب</span>
+                    <span data-edit="heroTitleHighlight" class="text-rehab-gold">والاستشارات</span>
+                </h1>
+
+                <!-- الوصف الفرعي -->
+                <p data-edit="heroSubtitle" class="text-lg sm:text-xl text-gray-200 font-medium leading-relaxed mb-10 max-w-3xl mx-auto">
+                    نقدم خدمات التسويق والتدريب والاستشارات تحت سقف واحد. نساعد الشركات على بناء حضور قوي في السوق، وتطوير مهارات فرقها، واتخاذ قرارات مبنية على الدراسة والبيانات.
+                </p>
+
+                <!-- أزرار الدعوة لاتخاذ إجراء -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                    <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-rehab-gold hover:bg-rehab-goldHover text-rehab-dark font-extrabold text-base px-8 py-4 rounded-2xl shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <span data-edit="heroBtnPrimary">ابدأ مشروعك الآن</span>
+                        <i data-lucide="arrow-up-left" class="w-5 h-5 rtl:rotate-0 ltr:rotate-90"></i>
+                    </a>
+                    <a href="#services" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 font-bold text-base px-8 py-4 rounded-2xl backdrop-blur-sm transition-all">
+                        <span data-edit="heroBtnSecondary">استكشف خدماتنا</span>
+                        <i data-lucide="layers" class="w-5 h-5 text-rehab-gold"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- شريط الإحصائيات والمرتكزات الأساسية -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8">
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 text-center hover:border-rehab-gold/50 transition-colors">
+                    <div data-edit="stat1Num" class="text-3xl sm:text-4xl font-black text-rehab-gold mb-2">3</div>
+                    <div data-edit="stat1Label" class="text-sm sm:text-base font-bold text-white">مجالات رئيسية: تسويق وتدريب واستشارات</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 text-center hover:border-rehab-gold/50 transition-colors">
+                    <div data-edit="stat2Num" class="text-3xl sm:text-4xl font-black text-rehab-gold mb-2">8</div>
+                    <div data-edit="stat2Label" class="text-sm sm:text-base font-bold text-white">تخصصات داخل فريق العمل</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 text-center hover:border-rehab-gold/50 transition-colors">
+                    <div data-edit="stat3Num" class="text-3xl sm:text-4xl font-black text-rehab-gold mb-2" dir="ltr">[00]+</div>
+                    <div data-edit="stat3Label" class="text-sm sm:text-base font-bold text-white">عميل نعمل معهم</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 text-center hover:border-rehab-gold/50 transition-colors flex flex-col justify-center">
+                    <div class="w-10 h-10 mx-auto mb-2 rounded-xl bg-rehab-gold/20 text-rehab-gold flex items-center justify-center">
+                        <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    </div>
+                    <div data-edit="stat4Label" class="text-sm sm:text-base font-bold text-white">تأسست في [سنة التأسيس] ومقرها [المدينة]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 2. من نحن ورؤيتنا ورسالتنا وقيمنا ==================== -->
+    <section id="about" class="py-20 lg:py-28 bg-rehab-mint">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- مقدمة من نحن -->
+            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-gray-100 mb-14 reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7">
+                        <span data-edit="aboutTag" class="inline-block text-rehab-primary font-extrabold text-sm bg-rehab-mintDark px-4 py-1.5 rounded-full mb-4">من نحن</span>
+                        <h2 data-edit="aboutHeading" class="text-2xl sm:text-4xl font-black text-rehab-dark mb-5 leading-snug">
+                            شريكك المتكامل للنمو وبناء حضور مؤسسي مستدام
+                        </h2>
+                        <p data-edit="aboutDesc" class="text-gray-600 text-base sm:text-lg leading-relaxed mb-4">
+                            رحاب شركة متكاملة تقدم خدمات التسويق والتدريب والاستشارات تحت سقف واحد. نساعد الشركات على بناء حضور قوي في السوق، وتطوير مهارات فرقها، واتخاذ قرارات مبنية على الدراسة والبيانات.
+                        </p>
+                        <div data-edit="aboutQuote" class="p-4 rounded-2xl bg-rehab-mint ltr:border-l-4 rtl:border-r-4 border-rehab-gold text-rehab-dark font-bold text-base sm:text-lg">
+                            "يجمع فريقنا بين الإبداع والتحليل والتنفيذ المنضبط لتحقيق نتائج قابلة للقياس."
+                        </div>
+                    </div>
+                    <!-- ركائز رحاب الثلاث -->
+                    <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-rehab-mint border border-gray-100">
+                            <div class="w-12 h-12 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                                <i data-lucide="megaphone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 data-edit="pillar1Title" class="font-extrabold text-rehab-dark text-lg">التسويق</h3>
+                                <p data-edit="pillar1Sub" class="text-xs text-gray-500">حضور رقمي وإعلانات وصناعة محتوى</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-rehab-mint border border-gray-100">
+                            <div class="w-12 h-12 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                                <i data-lucide="presentation" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 data-edit="pillar2Title" class="font-extrabold text-rehab-dark text-lg">التدريب</h3>
+                                <p data-edit="pillar2Sub" class="text-xs text-gray-500">تأهيل الفرق وتطوير مهارات العمل</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-rehab-mint border border-gray-100">
+                            <div class="w-12 h-12 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                                <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 data-edit="pillar3Title" class="font-extrabold text-rehab-dark text-lg">الاستشارات</h3>
+                                <p data-edit="pillar3Sub" class="text-xs text-gray-500">قرارات مبنية على الدراسة والبيانات</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- قسم رؤيتنا ورسالتنا وقيمنا -->
+            <div id="vision" class="pt-4">
+                <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                    <span data-edit="visionTag" class="inline-block text-rehab-primary font-extrabold text-sm bg-rehab-mintDark px-4 py-1.5 rounded-full mb-3">هويتنا المؤسسية</span>
+                    <h2 data-edit="visionHeading" class="text-2xl sm:text-4xl font-black text-rehab-dark">رؤيتنا ورسالتنا وقيمنا</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- رؤيتنا -->
+                    <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all reveal">
+                        <div class="w-14 h-14 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="eye" class="w-7 h-7"></i>
+                        </div>
+                        <h3 data-edit="visionTitle" class="text-2xl font-black text-rehab-dark mb-3">رؤيتنا</h3>
+                        <p data-edit="visionDesc" class="text-gray-600 leading-relaxed font-medium">
+                            أن نكون الشريك الأول للشركات في بناء علاماتها وتطوير فرقها وتحسين قراراتها.
+                        </p>
+                    </div>
+
+                    <!-- رسالتنا -->
+                    <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all reveal">
+                        <div class="w-14 h-14 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="target" class="w-7 h-7"></i>
+                        </div>
+                        <h3 data-edit="missionTitle" class="text-2xl font-black text-rehab-dark mb-3">رسالتنا</h3>
+                        <p data-edit="missionDesc" class="text-gray-600 leading-relaxed font-medium">
+                            تقديم حلول تسويقية وتدريبية واستشارية عملية ومبنية على فهم العميل، بجودة ثابتة وفريق ملتزم.
+                        </p>
+                    </div>
+
+                    <!-- قيمنا -->
+                    <div class="bg-rehab-dark text-white rounded-3xl p-8 shadow-md relative overflow-hidden reveal">
+                        <div class="absolute -bottom-8 ltr:-right-8 rtl:-left-8 w-32 h-32 bg-rehab-gold/10 rounded-full blur-xl"></div>
+                        <div class="w-14 h-14 rounded-2xl bg-white/10 text-rehab-gold flex items-center justify-center mb-6">
+                            <i data-lucide="gem" class="w-7 h-7"></i>
+                        </div>
+                        <h3 data-edit="valuesTitle" class="text-2xl font-black mb-5">قيمنا</h3>
+                        <div class="grid grid-cols-2 gap-3 relative z-10">
+                            <div class="flex items-center gap-2 bg-white/10 border border-white/15 px-3.5 py-2.5 rounded-xl font-bold text-sm">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-rehab-gold shrink-0"></i>
+                                <span data-edit="val1">الجودة</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-white/10 border border-white/15 px-3.5 py-2.5 rounded-xl font-bold text-sm">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-rehab-gold shrink-0"></i>
+                                <span data-edit="val2">الالتزام</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-white/10 border border-white/15 px-3.5 py-2.5 rounded-xl font-bold text-sm">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-rehab-gold shrink-0"></i>
+                                <span data-edit="val3">الإبداع</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-white/10 border border-white/15 px-3.5 py-2.5 rounded-xl font-bold text-sm">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-rehab-gold shrink-0"></i>
+                                <span data-edit="val4">الشفافية</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. خدماتنا الرئيسية (تبويبات تفاعلية + شبكة) ==================== -->
+    <section id="services" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+                <span data-edit="servicesTag" class="inline-block text-rehab-primary font-extrabold text-sm bg-rehab-mintDark px-4 py-1.5 rounded-full mb-3">مجالات عملنا</span>
+                <h2 data-edit="servicesHeading" class="text-2xl sm:text-4xl font-black text-rehab-dark mb-4">خدماتنا</h2>
+                <p data-edit="servicesSub" class="text-gray-600 text-base sm:text-lg">
+                    نغطي كافة احتياجات نمو أعمالك عبر ثلاثة مسارات رئيسية مترابطة لضمان أفضل عائد وأعلى كفاءة تشغيلية.
+                </p>
+            </div>
+
+            <!-- أزرار التبديل التفاعلية (Tabs) -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-10 reveal" role="tablist">
+                <button onclick="switchServiceTab('all')" id="tab-all" data-i18n="tabAll" class="service-tab active px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-rehab-dark text-white shadow-md">
+                    جميع المجالات (3)
+                </button>
+                <button onclick="switchServiceTab('marketing')" id="tab-marketing" data-i18n="tabMarketing" class="service-tab px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-rehab-mint text-rehab-dark hover:bg-rehab-mintDark">
+                    التسويق
+                </button>
+                <button onclick="switchServiceTab('training')" id="tab-training" data-i18n="tabTraining" class="service-tab px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-rehab-mint text-rehab-dark hover:bg-rehab-mintDark">
+                    التدريب
+                </button>
+                <button onclick="switchServiceTab('consulting')" id="tab-consulting" data-i18n="tabConsulting" class="service-tab px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-rehab-mint text-rehab-dark hover:bg-rehab-mintDark">
+                    الاستشارات
+                </button>
+            </div>
+
+            <!-- بطاقات المجالات الثلاث -->
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+                <!-- 1. التسويق -->
+                <div data-category="marketing" class="service-card bg-rehab-mint rounded-3xl p-8 border border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="megaphone" class="w-8 h-8"></i>
+                        </div>
+                        <h3 data-edit="srv1Title" class="text-2xl font-black text-rehab-dark mb-4">التسويق</h3>
+                        <ul class="space-y-3.5 text-gray-700 font-semibold">
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-rehab-primary/10 text-rehab-primary flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                </span>
+                                <span data-edit="srv1Item1">إدارة السوشيال ميديا</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-rehab-primary/10 text-rehab-primary flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                </span>
+                                <span data-edit="srv1Item2">الحملات الإعلانية المدفوعة</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-rehab-primary/10 text-rehab-primary flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                </span>
+                                <span data-edit="srv1Item3">المحتوى والتصميم والتصوير</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-5 border-t border-gray-200/70">
+                        <a href="#marketing-details" class="inline-flex items-center gap-2 text-rehab-primary font-extrabold text-sm hover:text-rehab-dark transition-colors">
+                            <span data-i18n="srv1Link">تفاصيل خدمات التسويق</span>
+                            <i data-lucide="arrow-left" class="w-4 h-4 rtl:rotate-0 ltr:rotate-180"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. التدريب -->
+                <div data-category="training" class="service-card bg-rehab-mint rounded-3xl p-8 border border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="presentation" class="w-8 h-8"></i>
+                        </div>
+                        <h3 data-edit="srv2Title" class="text-2xl font-black text-rehab-dark mb-4">التدريب</h3>
+                        <ul class="space-y-3.5 text-gray-700 font-semibold">
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-rehab-primary/10 text-rehab-primary flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                </span>
+                                <span data-edit="srv2Item1">برامج تدريبية للشركات</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-rehab-primary/10 text-rehab-primary flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                </span>
+                                <span data-edit="srv2Item2">ورش عمل في التسويق ومهارات العمل</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-rehab-primary/10 text-rehab-primary flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                </span>
+                                <span data-edit="srv2Item3">تنسيق وتنفيذ الدورات</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-5 border-t border-gray-200/70">
+                        <a href="#contact" onclick="selectServiceInForm('training')" class="inline-flex items-center gap-2 text-rehab-primary font-extrabold text-sm hover:text-rehab-dark transition-colors">
+                            <span data-i18n="srv2Link">اطلب برنامجاً تدريبياً</span>
+                            <i data-lucide="arrow-left" class="w-4 h-4 rtl:rotate-0 ltr:rotate-180"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. الاستشارات -->
+                <div data-category="consulting" class="service-card bg-rehab-mint rounded-3xl p-8 border border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="lightbulb" class="w-8 h-8"></i>
+                        </div>
+                        <h3 data-edit="srv3Title" class="text-2xl font-black text-rehab-dark mb-4">الاستشارات</h3>
+                        <ul class="space-y-3.5 text-gray-700 font-semibold">
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-rehab-primary/10 text-rehab-primary flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                </span>
+                                <span data-edit="srv3Item1">استشارات إدارية</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-rehab-primary/10 text-rehab-primary flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                </span>
+                                <span data-edit="srv3Item2">استشارات تسويقية</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-rehab-primary/10 text-rehab-primary flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                </span>
+                                <span data-edit="srv3Item3">دراسات وتقارير السوق</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-5 border-t border-gray-200/70">
+                        <a href="#contact" onclick="selectServiceInForm('consulting')" class="inline-flex items-center gap-2 text-rehab-primary font-extrabold text-sm hover:text-rehab-dark transition-colors">
+                            <span data-i18n="srv3Link">احجز جلسة استشارية</span>
+                            <i data-lucide="arrow-left" class="w-4 h-4 rtl:rotate-0 ltr:rotate-180"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. خدمات التسويق بالتفصيل (6 بطاقات) ==================== -->
+    <section id="marketing-details" class="py-20 lg:py-28 bg-rehab-mint">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+                <span data-edit="mktTag" class="inline-block text-rehab-primary font-extrabold text-sm bg-rehab-mintDark px-4 py-1.5 rounded-full mb-3">حلول التسويق الرقمي</span>
+                <h2 data-edit="mktHeading" class="text-2xl sm:text-4xl font-black text-rehab-dark mb-4">خدمات التسويق بالتفصيل</h2>
+                <p data-edit="mktSub" class="text-gray-600 text-base sm:text-lg">
+                    منظومة تسويقية متكاملة تغطي التخطيط، صناعة المحتوى، التصميم، الإنتاج المرئي، وإدارة الحملات والحسابات.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div class="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all reveal">
+                    <div class="w-12 h-12 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-5">
+                        <i data-lucide="share-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 data-edit="mkt1Title" class="text-xl font-black text-rehab-dark mb-2.5">إدارة السوشيال ميديا</h3>
+                    <p data-edit="mkt1Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">خطط محتوى وجدولة وتفاعل وتقارير شهرية.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all reveal">
+                    <div class="w-12 h-12 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-5">
+                        <i data-lucide="trending-up" class="w-6 h-6"></i>
+                    </div>
+                    <h3 data-edit="mkt2Title" class="text-xl font-black text-rehab-dark mb-2.5">الحملات المدفوعة</h3>
+                    <p data-edit="mkt2Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">تخطيط الميزانية والاستهداف وتحسين التكلفة يوميًا.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all reveal">
+                    <div class="w-12 h-12 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-5">
+                        <i data-lucide="pen-tool" class="w-6 h-6"></i>
+                    </div>
+                    <h3 data-edit="mkt3Title" class="text-xl font-black text-rehab-dark mb-2.5">صناعة المحتوى</h3>
+                    <p data-edit="mkt3Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">منشورات وسيناريوهات تعبر عن هوية العميل.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all reveal">
+                    <div class="w-12 h-12 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-5">
+                        <i data-lucide="palette" class="w-6 h-6"></i>
+                    </div>
+                    <h3 data-edit="mkt4Title" class="text-xl font-black text-rehab-dark mb-2.5">التصميم والهوية</h3>
+                    <p data-edit="mkt4Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">تصميمات وإعلانات وهويات بصرية احترافية.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all reveal">
+                    <div class="w-12 h-12 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-5">
+                        <i data-lucide="camera" class="w-6 h-6"></i>
+                    </div>
+                    <h3 data-edit="mkt5Title" class="text-xl font-black text-rehab-dark mb-2.5">التصوير والمونتاج</h3>
+                    <p data-edit="mkt5Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">صور وفيديوهات وريلز بجودة عالية.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-7 shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all reveal">
+                    <div class="w-12 h-12 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center mb-5">
+                        <i data-lucide="handshake" class="w-6 h-6"></i>
+                    </div>
+                    <h3 data-edit="mkt6Title" class="text-xl font-black text-rehab-dark mb-2.5">إدارة الحسابات</h3>
+                    <p data-edit="mkt6Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">حلقة وصل مع العميل ومتابعة التسليم والنتائج.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. كيف نعمل (4 خطوات متسلسلة) ==================== -->
+    <section id="process" class="py-20 lg:py-28 bg-rehab-dark text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span data-edit="procTag" class="inline-block text-rehab-gold font-extrabold text-sm bg-white/10 px-4 py-1.5 rounded-full mb-3">منهجية واضحة</span>
+                <h2 data-edit="procHeading" class="text-2xl sm:text-4xl font-black mb-4">كيف نعمل</h2>
+                <p data-edit="procSub" class="text-gray-300 text-base sm:text-lg">
+                    نتبع خطوات عمل مدروسة تضمن الوضوح التام في الأهداف والميزانيات والجداول الزمنية.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative">
+                <div class="hidden lg:block absolute top-12 right-16 left-16 h-0.5 bg-gradient-to-l from-rehab-gold/60 via-white/20 to-rehab-gold/60 z-0"></div>
+
+                <!-- خطوة 01 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/15 rounded-3xl p-7 relative z-10 hover:border-rehab-gold/60 transition-all reveal">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 rounded-2xl bg-rehab-gold text-rehab-dark flex items-center justify-center shadow-lg">
+                            <i data-lucide="search" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-3xl font-black text-white/20">01</span>
+                    </div>
+                    <h3 data-edit="step1Title" class="text-xl font-black text-white mb-2.5">نفهم احتياجك</h3>
+                    <p data-edit="step1Desc" class="text-gray-300 text-sm leading-relaxed">جلسة تعريف وتحديد الأهداف والجمهور.</p>
+                </div>
+
+                <!-- خطوة 02 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/15 rounded-3xl p-7 relative z-10 hover:border-rehab-gold/60 transition-all reveal">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 rounded-2xl bg-rehab-gold text-rehab-dark flex items-center justify-center shadow-lg">
+                            <i data-lucide="clipboard-list" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-3xl font-black text-white/20">02</span>
+                    </div>
+                    <h3 data-edit="step2Title" class="text-xl font-black text-white mb-2.5">نخطط</h3>
+                    <p data-edit="step2Desc" class="text-gray-300 text-sm leading-relaxed">استراتيجية وخطة زمنية وميزانية واضحة.</p>
+                </div>
+
+                <!-- خطوة 03 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/15 rounded-3xl p-7 relative z-10 hover:border-rehab-gold/60 transition-all reveal">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 rounded-2xl bg-rehab-gold text-rehab-dark flex items-center justify-center shadow-lg">
+                            <i data-lucide="settings" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-3xl font-black text-white/20">03</span>
+                    </div>
+                    <h3 data-edit="step3Title" class="text-xl font-black text-white mb-2.5">ننفذ</h3>
+                    <p data-edit="step3Desc" class="text-gray-300 text-sm leading-relaxed">إنتاج وتنفيذ بالتزام كامل بالمواعيد.</p>
+                </div>
+
+                <!-- خطوة 04 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/15 rounded-3xl p-7 relative z-10 hover:border-rehab-gold/60 transition-all reveal">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 rounded-2xl bg-rehab-gold text-rehab-dark flex items-center justify-center shadow-lg">
+                            <i data-lucide="pie-chart" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-3xl font-black text-white/20">04</span>
+                    </div>
+                    <h3 data-edit="step4Title" class="text-xl font-black text-white mb-2.5">نقيس ونطور</h3>
+                    <p data-edit="step4Desc" class="text-gray-300 text-sm leading-relaxed">تقارير دورية وتحسين مستمر للنتائج.</p>
+                </div>
+            </div>
+
+            <!-- ملاحظة المتابعة والسرية -->
+            <div class="mt-12 bg-white/10 border border-rehab-gold/40 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-start reveal">
+                <div class="w-12 h-12 rounded-xl bg-rehab-gold/20 text-rehab-gold flex items-center justify-center shrink-0">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <p data-edit="procNote" class="text-base sm:text-lg font-bold text-white">
+                    نرسل لكل عميل تقريرًا شهريًا بالنتائج والتوصيات، ونحافظ على سرية بياناته وحساباته.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. فريقنا (الهيكل التنظيمي والتخصصات) ==================== -->
+    <section id="team" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+                <span data-edit="teamTag" class="inline-block text-rehab-primary font-extrabold text-sm bg-rehab-mintDark px-4 py-1.5 rounded-full mb-3">كفاءات متخصصة</span>
+                <h2 data-edit="teamHeading" class="text-2xl sm:text-4xl font-black text-rehab-dark mb-4">فريقنا</h2>
+                <p data-edit="teamSub" class="text-gray-600 text-base sm:text-lg">
+                    8 تخصصات متكاملة تعمل بتناغم لإدارة مشاريعك من التخطيط وحتى القياس والتطوير.
+                </p>
+            </div>
+
+            <!-- القيادة العليا -->
+            <div class="max-w-md mx-auto mb-10 reveal">
+                <div class="bg-rehab-dark text-white rounded-3xl p-6 text-center shadow-lg border-2 border-rehab-gold relative">
+                    <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-rehab-gold text-rehab-dark flex items-center justify-center">
+                        <i data-lucide="crown" class="w-7 h-7"></i>
+                    </div>
+                    <span data-edit="ceoRole" class="text-xs font-bold uppercase tracking-wider text-rehab-gold">القيادة والإشراف العام</span>
+                    <h3 data-edit="ceoTitle" class="text-2xl font-black mt-1">المدير التنفيذي</h3>
+                </div>
+            </div>
+
+            <!-- الأقسام الثلاثة -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 reveal">
+                <!-- قسم التسويق والحسابات -->
+                <div class="bg-rehab-mint rounded-3xl p-7 border border-gray-100">
+                    <div class="flex items-center gap-3 mb-5 pb-4 border-b border-gray-200">
+                        <div class="w-10 h-10 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center">
+                            <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+                        </div>
+                        <h3 data-edit="dept1Title" class="text-xl font-black text-rehab-dark">التسويق والحسابات</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="bg-white p-3.5 rounded-xl font-bold text-rehab-dark text-sm shadow-xs flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rehab-gold"></span>
+                            <span data-edit="dept1Role1">أخصائي سوشيال ميديا</span>
+                        </li>
+                        <li class="bg-white p-3.5 rounded-xl font-bold text-rehab-dark text-sm shadow-xs flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rehab-gold"></span>
+                            <span data-edit="dept1Role2">مدير حسابات</span>
+                        </li>
+                        <li class="bg-white p-3.5 rounded-xl font-bold text-rehab-dark text-sm shadow-xs flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rehab-gold"></span>
+                            <span data-edit="dept1Role3">مشتري إعلانات</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- قسم المحتوى والإبداع -->
+                <div class="bg-rehab-mint rounded-3xl p-7 border border-gray-100">
+                    <div class="flex items-center gap-3 mb-5 pb-4 border-b border-gray-200">
+                        <div class="w-10 h-10 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <h3 data-edit="dept2Title" class="text-xl font-black text-rehab-dark">المحتوى والإبداع</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="bg-white p-3.5 rounded-xl font-bold text-rehab-dark text-sm shadow-xs flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rehab-gold"></span>
+                            <span data-edit="dept2Role1">صانع محتوى</span>
+                        </li>
+                        <li class="bg-white p-3.5 rounded-xl font-bold text-rehab-dark text-sm shadow-xs flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rehab-gold"></span>
+                            <span data-edit="dept2Role2">مصمم جرافيك</span>
+                        </li>
+                        <li class="bg-white p-3.5 rounded-xl font-bold text-rehab-dark text-sm shadow-xs flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rehab-gold"></span>
+                            <span data-edit="dept2Role3">مصور + مونتاج</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- قسم المالية -->
+                <div class="bg-rehab-mint rounded-3xl p-7 border border-gray-100">
+                    <div class="flex items-center gap-3 mb-5 pb-4 border-b border-gray-200">
+                        <div class="w-10 h-10 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center">
+                            <i data-lucide="calculator" class="w-5 h-5"></i>
+                        </div>
+                        <h3 data-edit="dept3Title" class="text-xl font-black text-rehab-dark">المالية</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="bg-white p-3.5 rounded-xl font-bold text-rehab-dark text-sm shadow-xs flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rehab-gold"></span>
+                            <span data-edit="dept3Role1">محاسب</span>
+                        </li>
+                    </ul>
+                    <p data-edit="dept3Note" class="mt-4 text-xs text-gray-500 leading-relaxed">
+                        إدارة مالية دقيقة وميزانيات شفافة لكافة الحملات والعقود.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 7. لماذا رحاب (4 مميزات تنافسية) ==================== -->
+    <section id="why-us" class="py-20 lg:py-28 bg-rehab-mint">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+                <span data-edit="whyTag" class="inline-block text-rehab-primary font-extrabold text-sm bg-rehab-mintDark px-4 py-1.5 rounded-full mb-3">قيمتنا المضافة</span>
+                <h2 data-edit="whyHeading" class="text-2xl sm:text-4xl font-black text-rehab-dark mb-4">لماذا رحاب</h2>
+                <p data-edit="whySub" class="text-gray-600 text-base sm:text-lg">
+                    نمنحك راحة البال والاحترافية في كل خطوة من خطوات التعاون.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex items-start gap-5 transition-all reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                        <i data-lucide="users" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <h3 data-edit="why1Title" class="text-xl font-black text-rehab-dark mb-2">فريق متكامل تحت سقف واحد</h3>
+                        <p data-edit="why1Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            تسويق وتصميم وتصوير وإعلانات وتدريب واستشارات دون الحاجة لعدة جهات.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex items-start gap-5 transition-all reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                        <i data-lucide="clock" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <h3 data-edit="why2Title" class="text-xl font-black text-rehab-dark mb-2">التزام بالمواعيد</h3>
+                        <p data-edit="why2Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            جداول تسليم واضحة ومتابعة مستمرة من مدير الحساب.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex items-start gap-5 transition-all reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                        <i data-lucide="bar-chart-3" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <h3 data-edit="why3Title" class="text-xl font-black text-rehab-dark mb-2">قرارات مبنية على بيانات</h3>
+                        <p data-edit="why3Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            تقارير دورية تقيس النتائج وتحدد خطوات التحسين.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex items-start gap-5 transition-all reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                        <i data-lucide="lock" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <h3 data-edit="why4Title" class="text-xl font-black text-rehab-dark mb-2">سرية كاملة</h3>
+                        <p data-edit="why4Desc" class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            نحافظ على بيانات العملاء وحساباتهم الإعلانية وخططهم.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 8. عملاؤنا وشركاء النجاح (شبكة تفاعلية لرفع الشعارات) ==================== -->
+    <section id="clients" class="py-20 bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                <span data-edit="clientsTag" class="inline-block text-rehab-primary font-extrabold text-sm bg-rehab-mintDark px-4 py-1.5 rounded-full mb-3">ثقة نعتز بها</span>
+                <h2 data-edit="clientsHeading" class="text-2xl sm:text-4xl font-black text-rehab-dark mb-3">عملاؤنا وشركاء النجاح</h2>
+                <p data-edit="clientsSub" class="text-gray-500 text-sm">انقر على أي مربع لرفع شعار العميل مباشرة من جهازك</p>
+            </div>
+
+            <!-- شبكة الشعارات الديناميكية (تُبنى وتُحفظ عبر JavaScript) -->
+            <div id="client-logos-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 reveal">
+                <!-- يتم حقن البطاقات الـ 6 هنا برمجياً -->
+            </div>
+
+            <!-- زر إضافة خانة شعار جديدة في وضع التعديل -->
+            <div class="mt-6 justify-center edit-only">
+                <button onclick="addClientLogoSlot()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-rehab-mintDark hover:bg-rehab-gold/30 text-rehab-dark font-bold text-sm transition-colors">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    <span data-i18n="btnAddLogoSlot">إضافة خانة شعار جديدة</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 9. لنبدأ معًا (قسم التواصل والنموذج التفاعلي) ==================== -->
+    <section id="contact" class="py-20 lg:py-28 bg-rehab-mint">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+                <span data-edit="contactTag" class="inline-block text-rehab-primary font-extrabold text-sm bg-rehab-mintDark px-4 py-1.5 rounded-full mb-3">تواصل معنا</span>
+                <h2 data-edit="contactHeading" class="text-2xl sm:text-4xl font-black text-rehab-dark mb-4">لنبدأ معًا</h2>
+                <p data-edit="contactSub" class="text-gray-600 text-base sm:text-lg">
+                    جاهزون لمناقشة أهداف شركتك وتقديم خطة عمل تناسب تطلعاتك في التسويق أو التدريب أو الاستشارات.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+                <!-- بطاقات بيانات التواصل -->
+                <div class="lg:col-span-5 space-y-4 reveal">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                            <i data-lucide="phone" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div data-i18n="contactPhoneLabel" class="text-xs font-bold text-gray-400 mb-0.5">الهاتف</div>
+                            <div data-edit="contactPhoneVal" class="text-base font-extrabold text-rehab-dark" dir="ltr">[رقم الهاتف]</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div data-i18n="contactEmailLabel" class="text-xs font-bold text-gray-400 mb-0.5">البريد الإلكتروني</div>
+                            <div data-edit="contactEmailVal" class="text-base font-extrabold text-rehab-dark">[البريد الإلكتروني]</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div data-i18n="contactAddressLabel" class="text-xs font-bold text-gray-400 mb-0.5">العنوان</div>
+                            <div data-edit="contactAddressVal" class="text-base font-extrabold text-rehab-dark">[العنوان]</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-rehab-dark text-rehab-gold flex items-center justify-center shrink-0">
+                            <i data-lucide="globe" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div data-i18n="contactWebLabel" class="text-xs font-bold text-gray-400 mb-0.5">الموقع وحسابات التواصل</div>
+                            <div data-edit="contactWebVal" class="text-base font-extrabold text-rehab-dark">[الموقع / حساب الشركة]</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- نموذج طلب استشارة / بدء مشروع -->
+                <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-gray-100 reveal">
+                    <h3 data-edit="formTitle" class="text-2xl font-black text-rehab-dark mb-2">اطلب عرض سعر أو جلسة تعريفية</h3>
+                    <p data-edit="formSub" class="text-sm text-gray-500 mb-6">املأ البيانات التالية وسيتواصل معك مدير الحساب في أقرب وقت.</p>
+
+                    <form id="contact-form" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="client-name" data-i18n="formNameLabel" class="block text-sm font-bold text-rehab-dark mb-1.5">الاسم الكامل *</label>
+                                <input type="text" id="client-name" required
+                                    class="w-full px-4 py-3 rounded-xl bg-rehab-mint border border-gray-200 focus:border-rehab-primary focus:bg-white focus:outline-none text-sm font-medium transition-colors">
+                            </div>
+                            <div>
+                                <label for="company-name" data-i18n="formCompanyLabel" class="block text-sm font-bold text-rehab-dark mb-1.5">اسم الشركة / المؤسسة</label>
+                                <input type="text" id="company-name"
+                                    class="w-full px-4 py-3 rounded-xl bg-rehab-mint border border-gray-200 focus:border-rehab-primary focus:bg-white focus:outline-none text-sm font-medium transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="service-type" data-i18n="formServiceLabel" class="block text-sm font-bold text-rehab-dark mb-1.5">الخدمة المطلوبة *</label>
+                                <select id="service-type" required
+                                    class="w-full px-4 py-3 rounded-xl bg-rehab-mint border border-gray-200 focus:border-rehab-primary focus:bg-white focus:outline-none text-sm font-bold text-rehab-dark transition-colors">
+                                    <option value="marketing" data-i18n="optMarketing">التسويق (سوشيال ميديا / إعلانات / محتوى)</option>
+                                    <option value="training" data-i18n="optTraining">التدريب (برامج للشركات / ورش عمل)</option>
+                                    <option value="consulting" data-i18n="optConsulting">الاستشارات (إدارية / تسويقية / دراسات سوق)</option>
+                                    <option value="integrated" data-i18n="optIntegrated">باقة متكاملة (تسويق + تدريب + استشارات)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="client-phone" data-i18n="formPhoneLabel" class="block text-sm font-bold text-rehab-dark mb-1.5">رقم الهاتف / واتساب *</label>
+                                <input type="tel" id="client-phone" required
+                                    class="w-full px-4 py-3 rounded-xl bg-rehab-mint border border-gray-200 focus:border-rehab-primary focus:bg-white focus:outline-none text-sm font-medium transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="project-details" data-i18n="formDetailsLabel" class="block text-sm font-bold text-rehab-dark mb-1.5">تفاصيل المشروع أو الاستفسار</label>
+                            <textarea id="project-details" rows="4"
+                                class="w-full px-4 py-3 rounded-xl bg-rehab-mint border border-gray-200 focus:border-rehab-primary focus:bg-white focus:outline-none text-sm font-medium transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-rehab-dark hover:bg-rehab-primary text-white font-extrabold text-base py-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                            <span data-i18n="formSubmitBtn">إرسال الطلب الآن</span>
+                            <i data-lucide="send" class="w-5 h-5 text-rehab-gold"></i>
+                        </button>
+                    </form>
+
+                    <!-- رسالة تأكيد الإرسال -->
+                    <div id="form-feedback" class="hidden mt-5 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-start gap-3">
+                        <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-600 shrink-0 mt-0.5"></i>
+                        <div>
+                            <h4 data-i18n="feedbackHeading" class="font-extrabold text-sm">تم استلام طلبك بنجاح!</h4>
+                            <p id="feedback-text" class="text-xs sm:text-sm mt-1 text-emerald-800"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== التذييل (Footer) ==================== -->
+    <footer class="bg-rehab-dark text-white pt-14 pb-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-rehab-gold overflow-hidden shrink-0">
+                        <img id="footer-logo-img" src="" alt="Logo" class="hidden w-full h-full object-contain bg-white p-1">
+                        <svg id="footer-logo-default" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div data-edit="footerBrand" class="text-xl font-black">رحاب للتسويق والتدريب والاستشارات</div>
+                        <div data-edit="footerSub" class="text-xs text-gray-400">حلول متكاملة لبناء العلامات وتطوير الفرق وتحسين القرارات</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-6 text-sm font-semibold text-gray-300">
+                    <a href="#about" data-i18n="navAbout" class="hover:text-rehab-gold transition-colors">من نحن</a>
+                    <a href="#services" data-i18n="navServices" class="hover:text-rehab-gold transition-colors">خدماتنا</a>
+                    <a href="#process" data-i18n="navProcess" class="hover:text-rehab-gold transition-colors">كيف نعمل</a>
+                    <a href="#team" data-i18n="navTeam" class="hover:text-rehab-gold transition-colors">فريقنا</a>
+                    <a href="#contact" data-i18n="navContact" class="hover:text-rehab-gold transition-colors">تواصل معنا</a>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+                <p data-edit="footerCopy">© 2026 رحاب للتسويق والتدريب والاستشارات. جميع الحقوق محفوظة.</p>
+                <p data-edit="footerProfileTag">بروفايل الشركة | 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== زر واتساب العائم السريع ==================== -->
+    <a href="#contact" title="WhatsApp"
+       class="fixed bottom-6 ltr:right-6 rtl:left-6 z-30 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-xl flex items-center justify-center transition-transform hover:scale-110">
+        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+        </svg>
+    </a>
+
+    <!-- ==================== السكربت الكامل لإدارة المحتوى واللغات والألوان والتصدير ==================== -->
+    <script>
+        const STORAGE_KEY = 'rehab_cms_state_v1';
+
+        // القاموس الافتراضي الشامل للغتين العربية والإنجليزية
+        const defaultContent = {
+            ar: {
+                pageTitle: 'رحاب للتسويق والتدريب والاستشارات | بروفايل الشركة 2026',
+                brandName: 'رحاب',
+                brandTagline: 'للتسويق والتدريب والاستشارات',
+                heroBadge: 'بروفايل الشركة  |  2026',
+                heroTitleMain: 'رحاب للتسويق والتدريب ',
+                heroTitleHighlight: 'والاستشارات',
+                heroSubtitle: 'نقدم خدمات التسويق والتدريب والاستشارات تحت سقف واحد. نساعد الشركات على بناء حضور قوي في السوق، وتطوير مهارات فرقها، واتخاذ قرارات مبنية على الدراسة والبيانات.',
+                heroBtnPrimary: 'ابدأ مشروعك الآن',
+                heroBtnSecondary: 'استكشف خدماتنا',
+                stat1Num: '3',
+                stat1Label: 'مجالات رئيسية: تسويق وتدريب واستشارات',
+                stat2Num: '8',
+                stat2Label: 'تخصصات داخل فريق العمل',
+                stat3Num: '[00]+',
+                stat3Label: 'عميل نعمل معهم',
+                stat4Label: 'تأسست في [سنة التأسيس] ومقرها [المدينة]',
+                aboutTag: 'من نحن',
+                aboutHeading: 'شريكك المتكامل للنمو وبناء حضور مؤسسي مستدام',
+                aboutDesc: 'رحاب شركة متكاملة تقدم خدمات التسويق والتدريب والاستشارات تحت سقف واحد. نساعد الشركات على بناء حضور قوي في السوق، وتطوير مهارات فرقها، واتخاذ قرارات مبنية على الدراسة والبيانات.',
+                aboutQuote: '"يجمع فريقنا بين الإبداع والتحليل والتنفيذ المنضبط لتحقيق نتائج قابلة للقياس."',
+                pillar1Title: 'التسويق',
+                pillar1Sub: 'حضور رقمي وإعلانات وصناعة محتوى',
+                pillar2Title: 'التدريب',
+                pillar2Sub: 'تأهيل الفرق وتطوير مهارات العمل',
+                pillar3Title: 'الاستشارات',
+                pillar3Sub: 'قرارات مبنية على الدراسة والبيانات',
+                visionTag: 'هويتنا المؤسسية',
+                visionHeading: 'رؤيتنا ورسالتنا وقيمنا',
+                visionTitle: 'رؤيتنا',
+                visionDesc: 'أن نكون الشريك الأول للشركات في بناء علاماتها وتطوير فرقها وتحسين قراراتها.',
+                missionTitle: 'رسالتنا',
+                missionDesc: 'تقديم حلول تسويقية وتدريبية واستشارية عملية ومبنية على فهم العميل، بجودة ثابتة وفريق ملتزم.',
+                valuesTitle: 'قيمنا',
+                val1: 'الجودة',
+                val2: 'الالتزام',
+                val3: 'الإبداع',
+                val4: 'الشفافية',
+                servicesTag: 'مجالات عملنا',
+                servicesHeading: 'خدماتنا',
+                servicesSub: 'نغطي كافة احتياجات نمو أعمالك عبر ثلاثة مسارات رئيسية مترابطة لضمان أفضل عائد وأعلى كفاءة تشغيلية.',
+                srv1Title: 'التسويق',
+                srv1Item1: 'إدارة السوشيال ميديا',
+                srv1Item2: 'الحملات الإعلانية المدفوعة',
+                srv1Item3: 'المحتوى والتصميم والتصوير',
+                srv2Title: 'التدريب',
+                srv2Item1: 'برامج تدريبية للشركات',
+                srv2Item2: 'ورش عمل في التسويق ومهارات العمل',
+                srv2Item3: 'تنسيق وتنفيذ الدورات',
+                srv3Title: 'الاستشارات',
+                srv3Item1: 'استشارات إدارية',
+                srv3Item2: 'استشارات تسويقية',
+                srv3Item3: 'دراسات وتقارير السوق',
+                mktTag: 'حلول التسويق الرقمي',
+                mktHeading: 'خدمات التسويق بالتفصيل',
+                mktSub: 'منظومة تسويقية متكاملة تغطي التخطيط، صناعة المحتوى، التصميم، الإنتاج المرئي، وإدارة الحملات والحسابات.',
+                mkt1Title: 'إدارة السوشيال ميديا',
+                mkt1Desc: 'خطط محتوى وجدولة وتفاعل وتقارير شهرية.',
+                mkt2Title: 'الحملات المدفوعة',
+                mkt2Desc: 'تخطيط الميزانية والاستهداف وتحسين التكلفة يوميًا.',
+                mkt3Title: 'صناعة المحتوى',
+                mkt3Desc: 'منشورات وسيناريوهات تعبر عن هوية العميل.',
+                mkt4Title: 'التصميم والهوية',
+                mkt4Desc: 'تصميمات وإعلانات وهويات بصرية احترافية.',
+                mkt5Title: 'التصوير والمونتاج',
+                mkt5Desc: 'صور وفيديوهات وريلز بجودة عالية.',
+                mkt6Title: 'إدارة الحسابات',
+                mkt6Desc: 'حلقة وصل مع العميل ومتابعة التسليم والنتائج.',
+                procTag: 'منهجية واضحة',
+                procHeading: 'كيف نعمل',
+                procSub: 'نتبع خطوات عمل مدروسة تضمن الوضوح التام في الأهداف والميزانيات والجداول الزمنية.',
+                step1Title: 'نفهم احتياجك',
+                step1Desc: 'جلسة تعريف وتحديد الأهداف والجمهور.',
+                step2Title: 'نخطط',
+                step2Desc: 'استراتيجية وخطة زمنية وميزانية واضحة.',
+                step3Title: 'ننفذ',
+                step3Desc: 'إنتاج وتنفيذ بالتزام كامل بالمواعيد.',
+                step4Title: 'نقيس ونطور',
+                step4Desc: 'تقارير دورية وتحسين مستمر للنتائج.',
+                procNote: 'نرسل لكل عميل تقريرًا شهريًا بالنتائج والتوصيات، ونحافظ على سرية بياناته وحساباته.',
+                teamTag: 'كفاءات متخصصة',
+                teamHeading: 'فريقنا',
+                teamSub: '8 تخصصات متكاملة تعمل بتناغم لإدارة مشاريعك من التخطيط وحتى القياس والتطوير.',
+                ceoRole: 'القيادة والإشراف العام',
+                ceoTitle: 'المدير التنفيذي',
+                dept1Title: 'التسويق والحسابات',
+                dept1Role1: 'أخصائي سوشيال ميديا',
+                dept1Role2: 'مدير حسابات',
+                dept1Role3: 'مشتري إعلانات',
+                dept2Title: 'المحتوى والإبداع',
+                dept2Role1: 'صانع محتوى',
+                dept2Role2: 'مصمم جرافيك',
+                dept2Role3: 'مصور + مونتاج',
+                dept3Title: 'المالية',
+                dept3Role1: 'محاسب',
+                dept3Note: 'إدارة مالية دقيقة وميزانيات شفافة لكافة الحملات والعقود.',
+                whyTag: 'قيمتنا المضافة',
+                whyHeading: 'لماذا رحاب',
+                whySub: 'نمنحك راحة البال والاحترافية في كل خطوة من خطوات التعاون.',
+                why1Title: 'فريق متكامل تحت سقف واحد',
+                why1Desc: 'تسويق وتصميم وتصوير وإعلانات وتدريب واستشارات دون الحاجة لعدة جهات.',
+                why2Title: 'التزام بالمواعيد',
+                why2Desc: 'جداول تسليم واضحة ومتابعة مستمرة من مدير الحساب.',
+                why3Title: 'قرارات مبنية على بيانات',
+                why3Desc: 'تقارير دورية تقيس النتائج وتحدد خطوات التحسين.',
+                why4Title: 'سرية كاملة',
+                why4Desc: 'نحافظ على بيانات العملاء وحساباتهم الإعلانية وخططهم.',
+                clientsTag: 'ثقة نعتز بها',
+                clientsHeading: 'عملاؤنا وشركاء النجاح',
+                clientsSub: 'انقر على أي مربع لرفع شعار العميل مباشرة من جهازك',
+                contactTag: 'تواصل معنا',
+                contactHeading: 'لنبدأ معًا',
+                contactSub: 'جاهزون لمناقشة أهداف شركتك وتقديم خطة عمل تناسب تطلعاتك في التسويق أو التدريب أو الاستشارات.',
+                contactPhoneVal: '[رقم الهاتف]',
+                contactEmailVal: '[البريد الإلكتروني]',
+                contactAddressVal: '[العنوان]',
+                contactWebVal: '[الموقع / حساب الشركة]',
+                formTitle: 'اطلب عرض سعر أو جلسة تعريفية',
+                formSub: 'املأ البيانات التالية وسيتواصل معك مدير الحساب في أقرب وقت.',
+                footerBrand: 'رحاب للتسويق والتدريب والاستشارات',
+                footerSub: 'حلول متكاملة لبناء العلامات وتطوير الفرق وتحسين القرارات',
+                footerCopy: '© 2026 رحاب للتسويق والتدريب والاستشارات. جميع الحقوق محفوظة.',
+                footerProfileTag: 'بروفايل الشركة | 2026'
+            },
+            en: {
+                pageTitle: 'Rehab for Marketing, Training & Consulting | Company Profile 2026',
+                brandName: 'Rehab',
+                brandTagline: 'Marketing, Training & Consulting',
+                heroBadge: 'Company Profile  |  2026',
+                heroTitleMain: 'Rehab for Marketing, Training ',
+                heroTitleHighlight: '& Consulting',
+                heroSubtitle: 'Integrated marketing, training, and consulting services under one roof. We help businesses build strong market presence, upskill their teams, and make data-driven decisions.',
+                heroBtnPrimary: 'Start Your Project',
+                heroBtnSecondary: 'Explore Services',
+                stat1Num: '3',
+                stat1Label: 'Core Pillars: Marketing, Training & Consulting',
+                stat2Num: '8',
+                stat2Label: 'Specialized Roles Within Our Team',
+                stat3Num: '[00]+',
+                stat3Label: 'Clients We Partner With',
+                stat4Label: 'Founded in [Year] • Based in [City]',
+                aboutTag: 'About Us',
+                aboutHeading: 'Your Integrated Partner for Growth & Sustainable Presence',
+                aboutDesc: 'Rehab is an integrated firm offering marketing, training, and consulting services under one roof. We empower companies to establish a strong market footprint, develop team capabilities, and make research-backed decisions.',
+                aboutQuote: '"Our team blends creativity, analytics, and disciplined execution to achieve measurable results."',
+                pillar1Title: 'Marketing',
+                pillar1Sub: 'Digital presence, paid ads & content creation',
+                pillar2Title: 'Training',
+                pillar2Sub: 'Corporate programs & workplace skill workshops',
+                pillar3Title: 'Consulting',
+                pillar3Sub: 'Research-driven & data-backed strategic decisions',
+                visionTag: 'Corporate Identity',
+                visionHeading: 'Vision, Mission & Core Values',
+                visionTitle: 'Our Vision',
+                visionDesc: 'To be the premier partner for companies in building their brands, developing their teams, and optimizing their decisions.',
+                missionTitle: 'Our Mission',
+                missionDesc: 'Delivering practical, client-centric marketing, training, and consulting solutions with consistent quality and a dedicated team.',
+                valuesTitle: 'Our Values',
+                val1: 'Quality',
+                val2: 'Commitment',
+                val3: 'Creativity',
+                val4: 'Transparency',
+                servicesTag: 'What We Do',
+                servicesHeading: 'Our Services',
+                servicesSub: 'We cover all your business growth needs across three interconnected tracks to maximize ROI and operational efficiency.',
+                srv1Title: 'Marketing',
+                srv1Item1: 'Social Media Management',
+                srv1Item2: 'Paid Advertising Campaigns',
+                srv1Item3: 'Content, Design & Photography',
+                srv2Title: 'Training',
+                srv2Item1: 'Corporate Training Programs',
+                srv2Item2: 'Marketing & Business Skills Workshops',
+                srv2Item3: 'Course Coordination & Execution',
+                srv3Title: 'Consulting',
+                srv3Item1: 'Management Consulting',
+                srv3Item2: 'Marketing Consulting',
+                srv3Item3: 'Market Studies & Reports',
+                mktTag: 'Digital Marketing Solutions',
+                mktHeading: 'Marketing Services in Detail',
+                mktSub: 'An end-to-end marketing ecosystem covering strategy, content creation, branding, visual production, and account management.',
+                mkt1Title: 'Social Media Management',
+                mkt1Desc: 'Content calendars, scheduling, community engagement, and monthly reports.',
+                mkt2Title: 'Paid Campaigns',
+                mkt2Desc: 'Budget planning, audience targeting, and daily cost optimization.',
+                mkt3Title: 'Content Creation',
+                mkt3Desc: 'Posts and scripts tailored to reflect your brand identity.',
+                mkt4Title: 'Design & Branding',
+                mkt4Desc: 'Professional graphics, ad creatives, and visual identities.',
+                mkt5Title: 'Photography & Editing',
+                mkt5Desc: 'High-quality photos, promotional videos, and reels.',
+                mkt6Title: 'Account Management',
+                mkt6Desc: 'Dedicated client liaison ensuring timely delivery and results.',
+                procTag: 'Clear Methodology',
+                procHeading: 'How We Work',
+                procSub: 'We follow a structured workflow ensuring complete clarity across goals, budgets, and timelines.',
+                step1Title: 'Understand Your Needs',
+                step1Desc: 'Discovery session to define goals and target audience.',
+                step2Title: 'Plan',
+                step2Desc: 'Clear strategy, timeline, and transparent budget.',
+                step3Title: 'Execute',
+                step3Desc: 'Production and execution with strict deadline adherence.',
+                step4Title: 'Measure & Optimize',
+                step4Desc: 'Periodic reports and continuous performance improvement.',
+                procNote: 'We send every client a monthly report with results and recommendations, while maintaining strict confidentiality.',
+                teamTag: 'Specialized Talent',
+                teamHeading: 'Our Team',
+                teamSub: '8 specialized roles working in harmony to manage your projects from planning to optimization.',
+                ceoRole: 'Executive Leadership',
+                ceoTitle: 'Chief Executive Officer (CEO)',
+                dept1Title: 'Marketing & Accounts',
+                dept1Role1: 'Social Media Specialist',
+                dept1Role2: 'Account Manager',
+                dept1Role3: 'Media Buyer',
+                dept2Title: 'Content & Creative',
+                dept2Role1: 'Content Creator',
+                dept2Role2: 'Graphic Designer',
+                dept2Role3: 'Photographer + Video Editor',
+                dept3Title: 'Finance',
+                dept3Role1: 'Accountant',
+                dept3Note: 'Accurate financial management and transparent budgets for all campaigns.',
+                whyTag: 'Our Value Proposition',
+                whyHeading: 'Why Rehab',
+                whySub: 'We give you peace of mind and professionalism at every step of our partnership.',
+                why1Title: 'All-in-One Team Under One Roof',
+                why1Desc: 'Marketing, design, photography, ads, training, and consulting without juggling multiple agencies.',
+                why2Title: 'On-Time Delivery',
+                why2Desc: 'Clear delivery schedules and continuous follow-up from your Account Manager.',
+                why3Title: 'Data-Driven Decisions',
+                why3Desc: 'Periodic reports measuring outcomes and identifying optimization steps.',
+                why4Title: 'Complete Confidentiality',
+                why4Desc: 'We safeguard all client data, ad accounts, and strategic plans.',
+                clientsTag: 'Trusted Partnerships',
+                clientsHeading: 'Our Clients & Success Partners',
+                clientsSub: 'Click any slot to upload a client logo directly from your device',
+                contactTag: 'Get In Touch',
+                contactHeading: "Let's Start Together",
+                contactSub: 'Ready to discuss your company goals and craft a tailored action plan in marketing, training, or consulting.',
+                contactPhoneVal: '[Phone Number]',
+                contactEmailVal: '[Email Address]',
+                contactAddressVal: '[Office Address]',
+                contactWebVal: '[Website / Social Handle]',
+                formTitle: 'Request a Quote or Discovery Call',
+                formSub: 'Fill out the form below and an Account Manager will reach out shortly.',
+                footerBrand: 'Rehab for Marketing, Training & Consulting',
+                footerSub: 'Integrated solutions for building brands, developing teams & optimizing decisions',
+                footerCopy: '© 2026 Rehab for Marketing, Training & Consulting. All Rights Reserved.',
+                footerProfileTag: 'Company Profile | 2026'
+            }
+        };
+
+        // ترجمات عناصر واجهة النظام الثابتة (الأزرار والتسميات)
+        const uiTranslations = {
+            ar: {
+                navAbout: 'من نحن',
+                navVision: 'رؤيتنا',
+                navServices: 'خدماتنا',
+                navProcess: 'كيف نعمل',
+                navTeam: 'فريقنا',
+                navWhy: 'لماذا رحاب',
+                navClients: 'عملاؤنا',
+                navContact: 'تواصل معنا',
+                navCta: 'ابدأ مشروعك',
+                btnEditMode: 'تعديل الصفحة',
+                btnCustomize: 'الألوان والتصدير',
+                editBannerText: 'وضع التعديل المباشر مفعّل: انقر على أي نص لتعديله مباشرة، أو ارفع الشعارات. التعديلات تُحفظ تلقائياً.',
+                btnExportShort: 'تصدير HTML',
+                btnDoneEdit: 'إنهاء التعديل',
+                drawerTitle: 'تخصيص الهوية والتصدير',
+                presetThemesLabel: 'قوالب ألوان سريعة',
+                presetEmerald: 'زمردي وذهبي',
+                presetRoyal: 'كحلي وسماوي',
+                presetPurple: 'ملكي وعنبري',
+                presetBurgundy: 'عنابي وذهبي',
+                customColorsLabel: 'تخصيص الألوان يدوياً',
+                colorPrimaryLabel: 'اللون الأساسي (الهيدر والأزرار)',
+                colorAccentLabel: 'اللون الثانوي (الذهبي المميز)',
+                colorBgLabel: 'لون خلفية الأقسام',
+                colorTextLabel: 'لون النصوص الأساسي',
+                uploadBrandLogoLabel: 'شعار الشركة الرئيسي',
+                chooseLogoFile: 'اختر صورة الشعار',
+                btnExportFull: 'تصدير ملف HTML جاهز للنشر',
+                exportHint: 'سيتم تحميل ملف index.html نظيف ومستقل يحتوي على كافة نصوصك وصورك وألوانك بدون شريط التعديل لرفعه مباشرة على الاستضافة.',
+                btnResetDefault: 'استعادة الإعدادات الافتراضية',
+                resetConfirmMsg: 'هل أنت متأكد من مسح كافة التعديلات والعودة للوضع الافتراضي؟',
+                confirmYes: 'نعم، استعادة',
+                confirmCancel: 'إلغاء',
+                tabAll: 'جميع المجالات (3)',
+                tabMarketing: 'التسويق',
+                tabTraining: 'التدريب',
+                tabConsulting: 'الاستشارات',
+                srv1Link: 'تفاصيل خدمات التسويق',
+                srv2Link: 'اطلب برنامجاً تدريبياً',
+                srv3Link: 'احجز جلسة استشارية',
+                btnAddLogoSlot: 'إضافة خانة شعار جديدة',
+                slotPlaceholder: '[شعار العميل - انقر للرفع]',
+                contactPhoneLabel: 'الهاتف',
+                contactEmailLabel: 'البريد الإلكتروني',
+                contactAddressLabel: 'العنوان',
+                contactWebLabel: 'الموقع وحسابات التواصل',
+                formNameLabel: 'الاسم الكامل *',
+                formCompanyLabel: 'اسم الشركة / المؤسسة',
+                formServiceLabel: 'الخدمة المطلوبة *',
+                optMarketing: 'التسويق (سوشيال ميديا / إعلانات / محتوى)',
+                optTraining: 'التدريب (برامج للشركات / ورش عمل)',
+                optConsulting: 'الاستشارات (إدارية / تسويقية / دراسات سوق)',
+                optIntegrated: 'باقة متكاملة (تسويق + تدريب + استشارات)',
+                formPhoneLabel: 'رقم الهاتف / واتساب *',
+                formDetailsLabel: 'تفاصيل المشروع أو الاستفسار',
+                formSubmitBtn: 'إرسال الطلب الآن',
+                feedbackHeading: 'تم استلام طلبك بنجاح!'
+            },
+            en: {
+                navAbout: 'About Us',
+                navVision: 'Vision',
+                navServices: 'Services',
+                navProcess: 'How We Work',
+                navTeam: 'Our Team',
+                navWhy: 'Why Rehab',
+                navClients: 'Clients',
+                navContact: 'Contact',
+                navCta: 'Start Project',
+                btnEditMode: 'Edit Page',
+                btnCustomize: 'Theme & Export',
+                editBannerText: 'Live Edit Mode Active: Click any text to edit inline, or click logo slots to upload. Changes auto-save.',
+                btnExportShort: 'Export HTML',
+                btnDoneEdit: 'Done Editing',
+                drawerTitle: 'Brand Theme & Export',
+                presetThemesLabel: 'Quick Color Presets',
+                presetEmerald: 'Emerald & Gold',
+                presetRoyal: 'Royal Navy & Sky',
+                presetPurple: 'Plum & Amber',
+                presetBurgundy: 'Burgundy & Gold',
+                customColorsLabel: 'Custom Brand Colors',
+                colorPrimaryLabel: 'Primary Color (Header & Buttons)',
+                colorAccentLabel: 'Accent Color (Gold Highlights)',
+                colorBgLabel: 'Section Background Color',
+                colorTextLabel: 'Primary Text Color',
+                uploadBrandLogoLabel: 'Main Company Logo',
+                chooseLogoFile: 'Upload Company Logo',
+                btnExportFull: 'Export Standalone HTML',
+                exportHint: 'Downloads a clean, standalone index.html file containing all your custom text, logos, and colors without editor controls.',
+                btnResetDefault: 'Reset to Default',
+                resetConfirmMsg: 'Are you sure you want to clear all edits and restore defaults?',
+                confirmYes: 'Yes, Reset',
+                confirmCancel: 'Cancel',
+                tabAll: 'All Pillars (3)',
+                tabMarketing: 'Marketing',
+                tabTraining: 'Training',
+                tabConsulting: 'Consulting',
+                srv1Link: 'Marketing Details',
+                srv2Link: 'Request Training Program',
+                srv3Link: 'Book Consultation',
+                btnAddLogoSlot: 'Add New Logo Slot',
+                slotPlaceholder: '[Client Logo - Click to Upload]',
+                contactPhoneLabel: 'Phone',
+                contactEmailLabel: 'Email Address',
+                contactAddressLabel: 'Address',
+                contactWebLabel: 'Website & Social Media',
+                formNameLabel: 'Full Name *',
+                formCompanyLabel: 'Company / Organization',
+                formServiceLabel: 'Required Service *',
+                optMarketing: 'Marketing (Social Media / Ads / Content)',
+                optTraining: 'Training (Corporate Programs / Workshops)',
+                optConsulting: 'Consulting (Management / Marketing / Market Research)',
+                optIntegrated: 'Integrated Package (Marketing + Training + Consulting)',
+                formPhoneLabel: 'Phone / WhatsApp *',
+                formDetailsLabel: 'Project Details or Inquiry',
+                formSubmitBtn: 'Submit Request Now',
+                feedbackHeading: 'Request Received Successfully!'
+            }
+        };
+
+        // الحالة التطبيقية الحالية
+        let appState = {
+            lang: 'ar',
+            isEditMode: false,
+            colors: {
+                primary: '#0B3B32',
+                accent: '#D4AF37',
+                bg: '#F8FAF9',
+                text: '#1A2421'
+            },
+            brandLogo: '',
+            clientLogos: ['', '', '', '', '', ''],
+            content: JSON.parse(JSON.stringify(defaultContent))
+        };
+
+        // تحميل البيانات المحفوظة من LocalStorage عند بدء التشغيل
+        function loadSavedState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    appState.lang = parsed.lang || 'ar';
+                    appState.colors = { ...appState.colors, ...(parsed.colors || {}) };
+                    appState.brandLogo = parsed.brandLogo || '';
+                    appState.clientLogos = Array.isArray(parsed.clientLogos) ? parsed.clientLogos : ['', '', '', '', '', ''];
+                    if (parsed.content) {
+                        appState.content.ar = { ...defaultContent.ar, ...(parsed.content.ar || {}) };
+                        appState.content.en = { ...defaultContent.en, ...(parsed.content.en || {}) };
+                    }
+                }
+            } catch (err) {
+                console.error('Error loading state:', err);
+            }
+        }
+
+        // حفظ الحالة في LocalStorage
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    lang: appState.lang,
+                    colors: appState.colors,
+                    brandLogo: appState.brandLogo,
+                    clientLogos: appState.clientLogos,
+                    content: appState.content
+                }));
+            } catch (err) {
+                console.error('Storage quota exceeded or error saving:', err);
+            }
+        }
+
+        // تطبيق اللغة والاتجاه (RTL / LTR) وتحديث جميع النصوص
+        function applyLanguage(lang) {
+            appState.lang = lang;
+            const htmlEl = document.documentElement;
+            htmlEl.setAttribute('lang', lang);
+            htmlEl.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+            // تحديث زر اللغة في الهيدر
+            document.getElementById('lang-btn-label').textContent = lang === 'ar' ? 'EN' : 'عربي';
+
+            // تحديث عنوان الصفحة
+            document.getElementById('page-title').textContent = appState.content[lang].pageTitle;
+
+            // تحديث النصوص القابلة للتعديل [data-edit]
+            document.querySelectorAll('[data-edit]').forEach(el => {
+                const key = el.getAttribute('data-edit');
+                if (appState.content[lang][key] !== undefined) {
+                    el.textContent = appState.content[lang][key];
+                }
+            });
+
+            // تحديث عناصر الواجهة الثابتة [data-i18n]
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (uiTranslations[lang][key] !== undefined) {
+                    el.textContent = uiTranslations[lang][key];
+                }
+            });
+
+            // إعادة رسم شبكة شعارات العملاء لتحديث النصوص الافتراضية
+            renderClientLogos();
+            lucide.createIcons();
+            saveState();
+        }
+
+        function toggleLanguage() {
+            const nextLang = appState.lang === 'ar' ? 'en' : 'ar';
+            applyLanguage(nextLang);
+        }
+
+        // تفعيل/إيقاف وضع التعديل المباشر (Edit Mode)
+        function toggleEditMode() {
+            appState.isEditMode = !appState.isEditMode;
+            const body = document.body;
+            const banner = document.getElementById('edit-banner');
+            const editBtn = document.getElementById('edit-mode-btn');
+
+            if (appState.isEditMode) {
+                body.classList.add('edit-mode');
+                banner.classList.remove('hidden');
+                editBtn.classList.add('bg-rehab-gold', 'text-rehab-dark', 'border-rehab-gold');
+                document.querySelectorAll('[data-edit]').forEach(el => {
+                    el.setAttribute('contenteditable', 'true');
+                });
+            } else {
+                body.classList.remove('edit-mode');
+                banner.classList.add('hidden');
+                editBtn.classList.remove('bg-rehab-gold', 'text-rehab-dark', 'border-rehab-gold');
+                document.querySelectorAll('[data-edit]').forEach(el => {
+                    el.removeAttribute('contenteditable');
+                });
+            }
+            renderClientLogos();
+            lucide.createIcons();
+        }
+
+        // مراقبة تعديل المستخدم لأي نص وحفظه فوراً في اللغة النشطة
+        function setupInlineEditingListeners() {
+            document.querySelectorAll('[data-edit]').forEach(el => {
+                el.addEventListener('input', () => {
+                    const key = el.getAttribute('data-edit');
+                    appState.content[appState.lang][key] = el.textContent;
+                    saveState();
+                });
+                // منع الروابط من الفتح أثناء التعديل المباشر
+                el.addEventListener('click', (e) => {
+                    if (appState.isEditMode && el.tagName === 'A') {
+                        e.preventDefault();
+                    }
+                });
+            });
+        }
+
+        // فتح/إغلاق لوحة تخصيص الألوان الجانبية
+        function toggleCustomizerDrawer() {
+            const drawer = document.getElementById('customizer-drawer');
+            const isClosed = drawer.classList.contains('ltr:translate-x-full') || drawer.classList.contains('rtl:-translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('ltr:translate-x-full', 'rtl:-translate-x-full');
+                drawer.classList.add('translate-x-0');
+            } else {
+                drawer.classList.remove('translate-x-0');
+                drawer.classList.add('ltr:translate-x-full', 'rtl:-translate-x-full');
+            }
+        }
+
+        // تحديث متغيرات الألوان وتطبيقها
+        function updateThemeColor(cssVar, hexValue) {
+            document.documentElement.style.setProperty(cssVar, hexValue);
+            if (cssVar === '--color-primary') {
+                appState.colors.primary = hexValue;
+                document.documentElement.style.setProperty('--color-primary-light', hexValue);
+                document.getElementById('picker-primary').value = hexValue;
+            } else if (cssVar === '--color-accent') {
+                appState.colors.accent = hexValue;
+                document.documentElement.style.setProperty('--color-accent-hover', hexValue);
+                document.getElementById('picker-accent').value = hexValue;
+            } else if (cssVar === '--color-bg') {
+                appState.colors.bg = hexValue;
+                document.getElementById('picker-bg').value = hexValue;
+            } else if (cssVar === '--color-text') {
+                appState.colors.text = hexValue;
+                document.getElementById('picker-text').value = hexValue;
+            }
+            saveState();
+        }
+
+        function applyAllSavedColors() {
+            updateThemeColor('--color-primary', appState.colors.primary);
+            updateThemeColor('--color-accent', appState.colors.accent);
+            updateThemeColor('--color-bg', appState.colors.bg);
+            updateThemeColor('--color-text', appState.colors.text);
+        }
+
+        function applyColorPreset(primary, accent, bg, text) {
+            updateThemeColor('--color-primary', primary);
+            updateThemeColor('--color-accent', accent);
+            updateThemeColor('--color-bg', bg);
+            updateThemeColor('--color-text', text);
+        }
+
+        // رفع شعار الشركة الرئيسي (Header + Footer)
+        function handleBrandLogoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                appState.brandLogo = e.target.result;
+                applyBrandLogo();
+                saveState();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function applyBrandLogo() {
+            const headerImg = document.getElementById('header-logo-img');
+            const headerDef = document.getElementById('header-logo-default');
+            const footerImg = document.getElementById('footer-logo-img');
+            const footerDef = document.getElementById('footer-logo-default');
+
+            if (appState.brandLogo) {
+                headerImg.src = appState.brandLogo;
+                headerImg.classList.remove('hidden');
+                headerDef.classList.add('hidden');
+
+                footerImg.src = appState.brandLogo;
+                footerImg.classList.remove('hidden');
+                footerDef.classList.add('hidden');
+            } else {
+                headerImg.classList.add('hidden');
+                headerDef.classList.remove('hidden');
+                footerImg.classList.add('hidden');
+                footerDef.classList.remove('hidden');
+            }
+        }
+
+        function removeBrandLogo() {
+            appState.brandLogo = '';
+            applyBrandLogo();
+            saveState();
+        }
+
+        // إدارة شبكة شعارات العملاء وشركاء النجاح
+        function renderClientLogos() {
+            const grid = document.getElementById('client-logos-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const placeholderTxt = uiTranslations[appState.lang].slotPlaceholder;
+
+            appState.clientLogos.forEach((logoData, index) => {
+                const slot = document.createElement('div');
+                slot.className = 'relative h-28 rounded-2xl bg-rehab-mint border-2 border-dashed border-gray-200 hover:border-rehab-primary/50 flex flex-col items-center justify-center p-4 text-gray-400 hover:text-rehab-primary transition-all group overflow-hidden cursor-pointer';
+
+                const inputId = `client-logo-file-${index}`;
+
+                if (logoData) {
+                    slot.innerHTML = `
+                        <img src="${logoData}" alt="Client Logo ${index + 1}" class="max-h-20 max-w-full object-contain">
+                        <label for="${inputId}" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 text-white flex flex-col items-center justify-center gap-1 transition-opacity cursor-pointer">
+                            <i data-lucide="upload" class="w-5 h-5 text-rehab-gold"></i>
+                            <span class="text-[11px] font-bold">${appState.lang === 'ar' ? 'تغيير الشعار' : 'Change Logo'}</span>
+                        </label>
+                        <button type="button" onclick="removeClientLogo(event, ${index})" class="edit-only absolute top-1.5 ltr:right-1.5 rtl:left-1.5 z-10 w-6 h-6 rounded-full bg-red-600 text-white items-center justify-center shadow hover:bg-red-700" title="حذف">
+                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <input type="file" id="${inputId}" accept="image/*" class="hidden" onchange="uploadClientLogo(event, ${index})">
+                    `;
+                } else {
+                    slot.innerHTML = `
+                        <label for="${inputId}" class="w-full h-full flex flex-col items-center justify-center cursor-pointer text-center">
+                            <i data-lucide="image-plus" class="w-6 h-6 mb-1.5 opacity-60 group-hover:opacity-100"></i>
+                            <span class="text-[11px] font-bold leading-tight">${placeholderTxt}</span>
+                        </label>
+                        ${appState.clientLogos.length > 6 ? `
+                        <button type="button" onclick="deleteClientSlot(event, ${index})" class="edit-only absolute top-1.5 ltr:right-1.5 rtl:left-1.5 z-10 w-6 h-6 rounded-full bg-gray-700 text-white items-center justify-center shadow" title="إزالة الخانة">
+                            <i data-lucide="trash-2" class="w-3 h-3"></i>
+                        </button>` : ''}
+                        <input type="file" id="${inputId}" accept="image/*" class="hidden" onchange="uploadClientLogo(event, ${index})">
+                    `;
+                }
+
+                grid.appendChild(slot);
+            });
+
+            lucide.createIcons();
+        }
+
+        function uploadClientLogo(event, index) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                appState.clientLogos[index] = e.target.result;
+                renderClientLogos();
+                saveState();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeClientLogo(event, index) {
+            event.preventDefault();
+            event.stopPropagation();
+            appState.clientLogos[index] = '';
+            renderClientLogos();
+            saveState();
+        }
+
+        function addClientLogoSlot() {
+            appState.clientLogos.push('');
+            renderClientLogos();
+            saveState();
+        }
+
+        function deleteClientSlot(event, index) {
+            event.preventDefault();
+            event.stopPropagation();
+            appState.clientLogos.splice(index, 1);
+            renderClientLogos();
+            saveState();
+        }
+
+        // تصدير ملف HTML نظيف ومستقل جاهز للرفع على الاستضافة
+        function exportStandaloneHTML() {
+            // إيقاف وضع التعديل أولاً إذا كان مفعلاً
+            if (appState.isEditMode) {
+                toggleEditMode();
+            }
+
+            // استنساخ المستند الحالي
+            const cloneDoc = document.documentElement.cloneNode(true);
+
+            // إزالة جميع عناصر واجهة نظام الإدارة (أزرار التعديل، اللوحة الجانبية، إلخ)
+            cloneDoc.querySelectorAll('.cms-ui, .edit-only, input[type="file"]').forEach(el => el.remove());
+
+            // تنظيف سمات التعديل
+            cloneDoc.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+            const cloneBody = cloneDoc.querySelector('body');
+            if (cloneBody) cloneBody.classList.remove('edit-mode');
+
+            // حقن الحالة المخصصة داخل السكربت في النسخة المصدرة حتى يعمل زر تبديل اللغة بنفس التعديلات
+            const stateInjectionScript = cloneDoc.createElement('script');
+            stateInjectionScript.textContent = `
+                window.__PRELOADED_REHAB_STATE__ = ${JSON.stringify({
+                    lang: appState.lang,
+                    colors: appState.colors,
+                    brandLogo: appState.brandLogo,
+                    clientLogos: appState.clientLogos,
+                    content: appState.content
+                })};
+            `;
+            cloneDoc.querySelector('head').appendChild(stateInjectionScript);
+
+            const finalHtml = '<!DOCTYPE html>\n' + cloneDoc.outerHTML;
+            const blob = new Blob([finalHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const downloadLink = document.createElement('a');
+            downloadLink.href = url;
+            downloadLink.download = 'index.html';
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            URL.revokeObjectURL(url);
+        }
+
+        // تأكيد واستعادة الإعدادات الافتراضية
+        function showResetConfirm() {
+            document.getElementById('reset-confirm-box').classList.remove('hidden');
+        }
+        function hideResetConfirm() {
+            document.getElementById('reset-confirm-box').classList.add('hidden');
+        }
+        function resetAllData() {
+            localStorage.removeItem(STORAGE_KEY);
+            appState = {
+                lang: 'ar',
+                isEditMode: false,
+                colors: { primary: '#0B3B32', accent: '#D4AF37', bg: '#F8FAF9', text: '#1A2421' },
+                brandLogo: '',
+                clientLogos: ['', '', '', '', '', ''],
+                content: JSON.parse(JSON.stringify(defaultContent))
+            };
+            applyAllSavedColors();
+            applyBrandLogo();
+            applyLanguage('ar');
+            hideResetConfirm();
+        }
+
+        // تصفية الخدمات عبر التبويبات
+        function switchServiceTab(category) {
+            const tabs = document.querySelectorAll('.service-tab');
+            const cards = document.querySelectorAll('.service-card');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-rehab-dark', 'text-white', 'shadow-md');
+                tab.classList.add('bg-rehab-mint', 'text-rehab-dark');
+            });
+
+            const activeTab = document.getElementById('tab-' + category);
+            if (activeTab) {
+                activeTab.classList.remove('bg-rehab-mint', 'text-rehab-dark');
+                activeTab.classList.add('bg-rehab-dark', 'text-white', 'shadow-md');
+            }
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function selectServiceInForm(serviceVal) {
+            const selectEl = document.getElementById('service-type');
+            if (selectEl) selectEl.value = serviceVal;
+        }
+
+        // معالجة نموذج التواصل
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('client-name').value.trim();
+            const serviceSelect = document.getElementById('service-type');
+            const serviceLabel = serviceSelect.options[serviceSelect.selectedIndex].text;
+            const feedbackText = document.getElementById('feedback-text');
+
+            if (appState.lang === 'ar') {
+                feedbackText.textContent = `شكرًا لك يا ${name}، تم تسجيل طلبك بخصوص (${serviceLabel}). سيتواصل معك مدير الحسابات في شركة رحاب قريباً.`;
+            } else {
+                feedbackText.textContent = `Thank you ${name}, your request for (${serviceLabel}) has been received. A Rehab Account Manager will contact you shortly.`;
+            }
+            document.getElementById('form-feedback').classList.remove('hidden');
+            this.reset();
+        });
+
+        // قائمة الجوال
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // حركة الظهور عند التمرير
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < windowHeight - 60) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        // التهيئة الشاملة عند تحميل الصفحة
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.__PRELOADED_REHAB_STATE__) {
+                appState = { ...appState, ...window.__PRELOADED_REHAB_STATE__ };
+            } else {
+                loadSavedState();
+            }
+            applyAllSavedColors();
+            applyBrandLogo();
+            applyLanguage(appState.lang);
+            setupInlineEditingListeners();
+            revealOnScroll();
+        });
+
+        window.addEventListener('scroll', revealOnScroll);
+    </script>
+</body>
+</html>
